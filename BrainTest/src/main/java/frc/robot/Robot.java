@@ -88,79 +88,15 @@ public class Robot extends IterativeRobot {
    leftthrottlevel = Math.abs(leftthrottlevel);
    rightthrottlevel = Math.abs(rightthrottlevel);
 
-  //  String out = "";
+    tankz.arcadeDrive(m_rightStick);
 
-  //  out += "Right = " + rightthrottlevel;
-  //  out += " Left = " + leftthrottlevel;
+    Double leftmotorspd=cim1.getSpeed();
+    Double rightmotorspd=cim2.getSpeed();
+    String bothspeeds= leftmotorspd.toString()+',' +rightmotorspd.toString();
+    System.out.println(bothspeeds);
 
-  //  System.out.println(out);
-
-   //System.out.println(rawthrottleval);
-   if (Math.abs(rightthrottlevel) < .1 && Math.abs(leftthrottlevel) < .1)
-   {
-     if(currentstate != 1)
-     {
-      System.out.println("DON'T MOVE");
-     }
-     currentstate = 1;
-     // do nothing
-    
-    drivemotor.set(0.5);
-   }
-   else if (Math.abs(rightthrottlevel) >= .1 && Math.abs(leftthrottlevel) >= .1)
-   {
-    if(currentstate != 2)
-    {
-     System.out.println("STOP");
-    }
-    currentstate = 2;
-     // do nothing
-    drivemotor.set(0.5);
-   }
-   else if(Math.abs(rightthrottlevel) >= .1 && Math.abs(leftthrottlevel) < .1)
-   {
-     // drive forward
-     if(currentstate != 3)
-     {
-      System.out.println("FORWARDS");
-     }
-     drivemotor.set(.5 + (Math.abs(rightthrottlevel)/2) );
-     currentstate = 3;
-   }
-   else if(Math.abs(leftthrottlevel) >= .1 && Math.abs(rightthrottlevel) < .1)
-   {
-    if(currentstate != 4)
-    {
-     System.out.println("BACKWARDS");
-    }
-     // drive backwards
-     currentstate = 4;
-     //drivemotor.set(.5 - (Math.abs(leftthrottlevel)) );
-   }
-   else
-   {
-     // if you got here... you're an idiot
-     System.out.println("You're an idiot");
-     drivemotor.set(0.5);
-
-   }
    
-  //  if(Math.abs(stickval) > 0.50 && !b)
-  //  {
-  //    b = true;
-  //    System.out.println("RELAY ON!!!");
-  //    blinkyrelay.set(Value.kReverse);
-  //  }
-  //  else if (Math.abs(stickval) <= .50 && b)
-  //  {
-  //    b = false;
-  //    System.out.println("RELAY OFF!!!");
-  //   blinkyrelay.set(Value.kOff);
-  //  }
-  //  else
-  //  {
-  //    //System.out.println("Doing Nothing!");
-  //  }
+
   }
 
   @Override
