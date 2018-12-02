@@ -38,7 +38,6 @@ public class Robot extends IterativeRobot {
   private Boolean b;
   private Boolean alreadyprinted;
   private Integer currentstate;
-  private Servo steeringservo;
   private Servo drivemotor;
   private Talon cim1;
   private Talon cim2;
@@ -57,12 +56,7 @@ public class Robot extends IterativeRobot {
     cim1 = new Talon(0);
     cim2 = new Talon(1);
     tankz = new RobotDrive(cim1, cim2);
-
-
-    
-    XBONE= new XboxController(0);
-
-    
+   
 
   }
 
@@ -70,7 +64,7 @@ public class Robot extends IterativeRobot {
   public void teleopPeriodic() {
 
 
-    tankz.arcadeDrive(m_rightStick);
+    tankz.arcadeDrive(m_leftStick);
 
     Double leftmotorspd=cim1.getSpeed();
     Double rightmotorspd=cim2.getSpeed();
@@ -84,10 +78,6 @@ public class Robot extends IterativeRobot {
   @Override
   public void disabledInit()
   {
-    // set steering back to center
-    steeringservo.set(.5);
 
-    // set motor to disabled
-    drivemotor.set(0.5);
   }
 }
