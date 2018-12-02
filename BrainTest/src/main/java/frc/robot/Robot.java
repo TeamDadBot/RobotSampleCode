@@ -51,7 +51,7 @@ public class Robot extends IterativeRobot {
     m_leftStick = new Joystick(0);
     //m_Button = new JoystickButton(joystick, buttonNumber)
     m_rightStick = new Joystick(1);
-    blinkyrelay = new Relay(0);
+
 
     // initializing tank drive & motor drives
     cim1 = new Talon(0);
@@ -59,34 +59,16 @@ public class Robot extends IterativeRobot {
     tankz = new RobotDrive(cim1, cim2);
 
 
-    a = new Integer(0);
-    b = false;
-    steeringservo=new Servo(0);
-    drivemotor = new Servo(1);
-    XBONE= new XboxController(0);
-    for (int i=-100;i<100;i++)
-    {
-      drivemotor.set(i/100);
-      for (int j=0;j<1000;j++)
-      {}
-    }
-    alreadyprinted = false;
-    currentstate = 0;
     
-    //blinkyrelay.set(Value.kReverse);
+    XBONE= new XboxController(0);
+
+    
+
   }
 
   @Override
   public void teleopPeriodic() {
-   // m_myRobot.tankDrive(m_leftStick.getY(), m_rightStick.getY());
-   double xstickval = m_leftStick.getX(); 
-   steeringservo.set(.5-(xstickval)/4);
 
-   double rightthrottlevel = XBONE.getTriggerAxis(Hand.kRight);
-   double leftthrottlevel = XBONE.getTriggerAxis(Hand.kLeft);
-
-   leftthrottlevel = Math.abs(leftthrottlevel);
-   rightthrottlevel = Math.abs(rightthrottlevel);
 
     tankz.arcadeDrive(m_rightStick);
 
