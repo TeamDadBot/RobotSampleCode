@@ -13,12 +13,14 @@ import edu.wpi.first.wpilibj.AnalogTrigger;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.Servo;
 
@@ -38,6 +40,10 @@ public class Robot extends IterativeRobot {
   private Integer currentstate;
   private Servo steeringservo;
   private Servo drivemotor;
+  private Talon cim1;
+  private Talon cim2;
+  private RobotDrive tankz;
+
 
   @Override
   public void robotInit() {
@@ -46,6 +52,13 @@ public class Robot extends IterativeRobot {
     //m_Button = new JoystickButton(joystick, buttonNumber)
     m_rightStick = new Joystick(1);
     blinkyrelay = new Relay(0);
+
+    // initializing tank drive & motor drives
+    cim1 = new Talon(0);
+    cim2 = new Talon(1);
+    tankz = new RobotDrive(cim1, cim2);
+
+
     a = new Integer(0);
     b = false;
     steeringservo=new Servo(0);
